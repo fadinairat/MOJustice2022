@@ -1,0 +1,149 @@
+﻿@model MOE.Models.Group
+@using MOE.Models
+@{
+    ViewData["Title"] = "Create Group";
+    Layout = "~/Areas/Control/Views/Shared/_Layout.cshtml";
+}
+<partial name="_validationMsg" />
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">Groups</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li class="breadcrumb-item active">Groups</li>
+            </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+      
+<section class="content">
+<div class="container-fluid">
+
+<h1 class="form-title">Add New Group</h1>
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col-12 col-sm-6">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label asp-for="ArName" class="control-label"></label>
+                    <input asp-for="ArName" class="form-control" />
+                    <span asp-validation-for="ArName" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="LangId" class="control-label"></label>
+                <select asp-for="LangId" class ="form-control" asp-items="ViewBag.LangId"></select>
+            </div>
+
+            <div class="row"><div class="col-12 text-left"><h3 class="form-title">Pages</h3></div></div>
+            <div class="row">
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="P1" class="control-label" style="width:60%;"></label>
+                    <input asp-for="P1" type="checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                    
+                    <span asp-validation-for="P1" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="P2" class="control-label" style="width:60%;"></label>
+                    <input asp-for="P2" type="checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="P2" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="P3" class="control-label" style="width:60%;"></label>
+                    <input asp-for="P3" type="checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="P3" class="text-danger"></span>
+                </div>
+            </div>
+
+             <div class="row"><div class="col-12 text-left"><h3 class="form-title">Categories</h3></div></div>
+            <div class="row">
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="P4" class="control-label" style="width:60%;"></label>
+                    <input asp-for="P4" type="checkbox" data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="P4" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="P5" class="control-label" style="width:60%;"></label>
+                    <input asp-for="P5" type="checkbox" data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="P5" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="P6" class="control-label" style="width:60%;"></label>
+                    <input asp-for="P6" type="checkbox" data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="P6" class="text-danger"></span>
+                </div>
+            </div>
+
+             <div class="row"><div class="col-12 text-left"><h3 class="form-title">General Permission</h3></div></div>
+            <div class="row">
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="P7" class="control-label" style="width:60%;"></label>
+                    <input asp-for="P7" type="checkbox" data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="P7" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="P8" class="control-label" style="width:60%;"></label>
+                    <input asp-for="P8" type="checkbox" data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="P8" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="P9" class="control-label" style="width:60%;"></label>
+                    <input asp-for="P9" type="checkbox" data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="P9" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="P10" class="control-label" style="width:60%;"></label>
+                    <input asp-for="P10" type="checkbox" data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="P10" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="P11" class="control-label" style="width:60%;"></label>
+                    <input asp-for="P11" type="checkbox" data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="P11" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="P12" class="control-label" style="width:60%;"></label>
+                    <input asp-for="P12" type="checkbox" data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="P12" class="text-danger"></span>
+                </div>
+              
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Add Group" class="btn btn-primary" />&nbsp;&nbsp;&nbsp;
+                <a asp-action="Index" class="btn btn-danger float-end">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+</div>
+</section>
+@section Scripts{
+    {
+        <partial name="_ValidationScriptsPartial" >
+    }
+    <script type="text/javascript" >
+    $(function(){   
+        $("input[data-bootstrap-switch]").each(function(){
+          $(this).bootstrapSwitch('state', $(this).prop('checked'));
+        });
+    });
+    </script>
+}

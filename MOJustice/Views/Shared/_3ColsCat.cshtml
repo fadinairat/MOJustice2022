@@ -1,0 +1,38 @@
+﻿@using MOE.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@if(ViewBag.pageList != null){
+    foreach(PageCategory item in ViewBag.pageList){
+        <div class="col-12 col-sm-6 col-md-4 text-center cat-3" >
+			<div class="cat_cont col3-cat" >
+				<div class="cat_thumb_div" >
+				@if(item.Page.Thumb!= null)
+				{
+					if(item.Page.Url != null){
+						<a href="@Url.Content(item.Page.Url)" class="urllink" ><img src="@Url.Content(item.Page.Thumb)" class="img-fluid list-img" ></a>
+					}
+					else
+					{
+						<a asp-action="Details" asp-controller="Pages" asp-route-id="@item.Page.PageId" asp-route-title="@item.Page.Title" class="linkimg"  ><img src="@Url.Content(item.Page.Thumb)" class="img-fluid list-img" ></a>
+					}
+				}
+				</div>
+				@if(item.Page.Url !=null)
+				{
+					<div class="text cat-title text-center"><a class='btitle1' href="@Url.Content(item.Page.Url.ToString())" >@item.Page.Title</a></div>
+				}
+				else
+				{
+					<div class="text cat-title text-center"><a class='btitle1' asp-action="Details" asp-controller="Pages" asp-route-id="@item.Page.PageId" asp-route-title="@item.Page.Title" >@item.Page.Title</a></div>
+				}
+				@Html.Raw(item.Page.Summary)
+				@if (item.Page.ShowDate)
+				{
+					<span class="sdate">@item.Page.PageDate</span>
+				}
+			</div>
+		</div>
+    }
+}

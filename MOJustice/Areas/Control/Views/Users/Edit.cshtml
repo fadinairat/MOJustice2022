@@ -1,0 +1,93 @@
+﻿@model MOE.Models.User
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Control/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">Users</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li class="breadcrumb-item active">Users</li>
+            </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+      
+<section class="content">
+<div class="container-fluid">
+
+<h1 class="form-title">Edit User</h1>
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Fullname" class="control-label"></label>
+                <input asp-for="Fullname" class="form-control" />
+                <span asp-validation-for="Fullname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nickname" class="control-label"></label>
+                <input asp-for="Nickname" class="form-control" />
+                <span asp-validation-for="Nickname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GroupId" class="control-label"></label>
+                <select asp-for="GroupId" class="form-control" asp-items="ViewBag.GroupId"></select>
+                <span asp-validation-for="GroupId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoginName" class="control-label"></label>
+                <input asp-for="LoginName" class="form-control" />
+                <span asp-validation-for="LoginName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input type="password" asp-for="Password" class="form-control" value="******"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label for="Confirm_Password" class="control-label"></label>
+                <input type="password" name="Confirm_Password" id="Confirm_Password" data-val="true" required class="form-control input-validation-error" data-val-required="Page Category field is required..." value="******" />
+                <span class="text-danger field-validation-error" data-valmsg-for="Category" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LangId" class="control-label"></label>
+                <select asp-for="LangId" class="form-control" asp-items="ViewBag.LangId"></select>
+                <span asp-validation-for="LangId" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+</div>  
+</section>
+
+@section Scripts{
+    {
+        <partial name="_ValidationScriptsPartial" >
+    }
+}

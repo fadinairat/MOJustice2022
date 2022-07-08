@@ -1,0 +1,101 @@
+﻿@model IEnumerable<MOE.Models.Page>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Control/Views/Shared/_Layout.cshtml";
+}
+<partial name="_validationMsg" />
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">Pages</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li class="breadcrumb-item active">Pages</li>
+            </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+      
+<section class="content">
+<div class="container-fluid">
+<div class="row">
+    <div class="col-6 text-left" ><h1 class="form-title">List All Pages</h1></div>  
+    <div class="col-6 text-right mt-3 sm-link" ><a asp-action="Create" ><i class="bi bi-plus-circle"></i> Add New Page</a></div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th width="30%">
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+           <th>
+                @Html.DisplayNameFor(model => model.Priority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Views)
+            </th>
+           <th>
+                @Html.DisplayNameFor(model => model.PageDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserAdd)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Language.Name)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Views)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PageDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserAdd.Nickname)
+            </td>
+            
+            <td>
+                <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.PageId"><i class="fas fa-pencil-alt"></i> Edit</a> 
+                <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.PageId"><i class="fas fa-folder"></i> Details</a> 
+                <a asp-route-id="@item.PageId" class="btn btn-danger btn-sm" asp-action="Delete"><i class="fas fa-trash"></i> Delete</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</section>

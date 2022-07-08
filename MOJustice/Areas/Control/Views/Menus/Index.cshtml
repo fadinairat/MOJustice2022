@@ -1,0 +1,141 @@
+﻿@model IEnumerable<MOE.Models.Menu>
+@using MOE.Models
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Control/Views/Shared/_Layout.cshtml";
+}
+<partial name="_validationMsg" />
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">Menus</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li class="breadcrumb-item active">Menus</li>
+            </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+      
+<section class="content">
+<div class="container-fluid">
+
+<div class="row">
+    <div class="col-6 text-start" ><h1 class="form-title">List All Menus</h1></div>
+    <div class="col-6 text-right mt-3 sm-link" ><a asp-action="Create" ><i class="bi bi-plus-circle"></i> Add New Menu</a></div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Target)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Priority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Link)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LangId)
+            </th>
+            <th>
+                Added By
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuLocation.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Target)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuParentRef.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Link)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Fullname)
+            </td>
+            <td>
+                <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-pencil-alt"></i> Edit</a> 
+                <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-folder"></i> Details</a> 
+                <a asp-route-id="@item.Id" class="btn btn-danger btn-sm" asp-action="Delete"><i class="fas fa-trash"></i> Delete</a> 
+            </td>
+        </tr>
+                    if(ViewBag.SubMenus != null){
+                        foreach(Menu sub in ViewBag.SubMenus)
+                        {
+                            if(sub.ParentId == item.Id)
+                            {
+                                <tr class="table-success">
+                                    <td>
+                                        <i class="bi bi-forward-fill"></i>  @Html.DisplayFor(modelItem => sub.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => sub.MenuLocation.Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => sub.Target)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => sub.MenuParentRef.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => sub.Priority)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => sub.Link)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => sub.Language.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => sub.User.Fullname)
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@sub.Id"><i class="fas fa-pencil-alt"></i> Edit</a> 
+                                        <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@sub.Id"><i class="fas fa-folder"></i> Details</a> 
+                                        <a asp-route-id="@sub.Id" class="btn btn-danger btn-sm" asp-action="Delete"><i class="fas fa-trash"></i> Delete</a> 
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+}
+    </tbody>
+</table>
+</div>
+</section>

@@ -1,0 +1,80 @@
+.frmSearch {}
+#items-list{z-index:999;float:left;list-style:none;margin-top:-3px;padding:0;width:90%;position: absolute;max-height:250px;overflow-y:auto;}
+#items-list li{padding: 10px; background: #44719D; border-bottom: #bbb9b9 1px solid;color:white;}
+#items-list li:hover{background:#447AB0;cursor: pointer;}
+#search_text{padding: 10px;border: #a8d4b1 1px solid;border-radius:4px;content: "\f087";}
+
+.rd_box{padding-left:7px !important;}
+.rd_box h1 {
+  color: #18191b;
+  margin-bottom: 2rem;
+}
+.rd_box h2{border:0px;font-size:12px;}
+
+.rd_box section {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.rd_box section > div {
+  flex: 1;
+  padding: 0.2rem;
+}
+
+.rd_box input[type="radio"] {
+  display: none;
+}
+.rd_box input[type="radio"]:not(:disabled) ~ label {
+  cursor: pointer;
+}
+.rd_box input[type="radio"]:disabled ~ label {
+  color: #bcc2bf;
+  border-color: #bcc2bf;
+  box-shadow: none;
+}
+
+.rd_box label {
+  display: block;
+  background: white;
+  border: 1px solid #20df80;
+  border-radius: 2px;
+  padding: 7px;
+  margin-bottom: 1rem;
+  text-align: center;
+  box-shadow: 0px 3px 10px -2px rgba(161, 170, 166, 0.5);
+  position: relative;
+}
+
+.rd_box input[type="radio"]:checked + label {
+  background: #20df80;
+  color: white;
+}
+  .rd_box input[type="radio"]:checked + label::after {
+    color: #3d3f43;
+    font-family: "Font Awesome 5 Free";
+    border: 2px solid #1dc973;
+    content: "\f00c";
+    font-size: 11px;
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.25);
+  }
+
+.rd_box p {
+  font-weight: 900;
+}
+
+@media only screen and (max-width: 700px) {
+  .rd_box section {
+    flex-direction: column;
+  }
+}
+/***************************************************************/

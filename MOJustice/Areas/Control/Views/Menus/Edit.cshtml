@@ -1,0 +1,189 @@
+﻿@model MOE.Models.Menu
+@using MOE.Models
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Control/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">Menus</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li class="breadcrumb-item active">Menus</li>
+            </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+      
+<section class="content">
+<div class="container-fluid">
+
+<h1 class="form-title">Edit Menu</h1>
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" method="post" eenctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="row">
+                <div class="form-group col-6 col-sm-6">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label asp-for="LocationId" class="control-label"></label>
+                    <select asp-for="LocationId" class="form-control">
+                    <option value="" >:: SELECT LOCATION ::</option>
+                    @{
+                        List<MenuLocation> locations = ViewBag.Locations;
+                        foreach (MenuLocation temp in locations)
+                        {                          
+                            Boolean isSelected = false;
+                            if(temp.Id == Model.LocationId) isSelected = true;
+                            if(isSelected){
+                                        <option value="@temp.Id" selected>@temp.Title</option>
+                            }
+                            else{
+                                        <option value="@temp.Id">@temp.Title</option>
+                            }
+                        }
+                    }
+                    </select>
+                    <span asp-validation-for="LocationId" class="text-danger"></span>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="form-group col-6 col-sm-6">
+                    <label asp-for="LangId" class="control-label"></label>
+                    <select asp-for="LangId" class="form-control">
+                    <option value="" >:: SELECT LANGUAGE ::</option>
+                    @{
+                        List<Language> langs = ViewBag.Languages;
+                        foreach (Language temp in langs)
+                        {                          
+                            Boolean isSelected = false;
+                            if(temp.Id == Model.LangId) isSelected = true;
+                            if(isSelected){
+                                        <option value="@temp.Id" selected>@temp.Name</option>
+                            }
+                            else{
+                                        <option value="@temp.Id">@temp.Name</option>
+                            }
+                        }
+                    }
+                    </select>
+                    <span asp-validation-for="LangId" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label asp-for="Target" class="control-label"></label>
+                    <input asp-for="Target" class="form-control" />
+                    <span asp-validation-for="Target" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6 col-sm-6">
+                    <label asp-for="ParentId" class="control-label"></label>
+                    <select asp-for="ParentId" class="form-control">
+                    @{
+                        if(Model.ParentId == 0){ <option value="0" selected >ROOT</option> }
+                        else {<option value="" >ROOT</option>}
+
+                        List<Menu> parents = ViewBag.Parents;
+                        foreach (Menu temp in parents)
+                        {                          
+                            Boolean isSelected = false;
+                            if(temp.Id == Model.ParentId) isSelected = true;
+                            if(isSelected){
+                                        <option value="@temp.Id" selected>@temp.Name</option>
+                            }
+                            else{
+                                        <option value="@temp.Id">@temp.Name</option>
+                            }
+                        }
+                    }
+                    </select>
+                    <span asp-validation-for="ParentId" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6 col-sm-6">
+                    <label asp-for="Priority" class="control-label"></label>
+                    <input asp-for="Priority" class="form-control" />
+                    <span asp-validation-for="Priority" class="text-danger"></span>
+                </div>
+            </div>
+            
+            
+            <div class="form-group">
+                <label asp-for="Link" class="control-label"></label><br />
+                <input asp-for="Link" class="form-control" style="width:95%;display:inline;"/> <a href="#" id="get_link" data-toggle="modal" data-target="#linkmodal" ><i class="fa fa-link" id="get_link_icon" data-text="Link" style="font-size:24px;" aria-hidden="true"></i></a>
+                <span asp-validation-for="Link" class="text-danger"></span>
+            </div>
+            
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger ml-2">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+
+
+@section Scripts{
+    {
+        <partial name="_ValidationScriptsPartial" >
+    }
+     <script type="text/javascript" >
+        $(document).ready(function(){
+            $("#LocationId, #LangId").change(function(){     
+                var lang = $("#LangId").val();
+                var location = $("#LocationId").val();   
+        
+                var url = "@Url.Action("getMenuParents", "Menus")?langId="+lang+"&location="+location;        
+                $("#ParentId").empty();
+                $.ajax({
+                    url: url,      
+                    dataType: "json",
+                    beforeSend: function() {
+                        $("#ParentId").hide();
+                        $("#ParentId").before($('<i class="fa fa-spinner fa-spin fa-3x fa-fw k_loader" id="m_loader"></i> '));
+                    },    
+                    success: function (data) {                            
+                        var menus = data.menus;
+                        $("#ParentId").append($('<option></option>').val("0").html(":: ROOT ::"));
+                        for(var i=0;i<menus.length;i++){
+                            if(menus[i].ParentId!="0"){
+                                $("#ParentId").append($('<option></option>').val(menus[i].id).html(" -- "+menus[i].name));                   
+                            }
+                            else $("#ParentId").append($('<option></option>').val(menus[i].id).html(menus[i].name));                   
+                        }                                               
+                    },
+                    error: function (jqXhr, json, errorThrown) {
+                        try{
+                            var errors = jqXhr.responseJSON.errors;                       
+                            console.log(errors);
+                        }
+                        catch(eee){
+                            console.log(eee.message);
+                        }
+                    },
+                    complete: function () {
+                       //alert("complete");
+                        $("#m_loader").remove();
+                       $("#ParentId").show();               
+                    }
+                });
+            
+            });
+        });    
+    </script>
+}

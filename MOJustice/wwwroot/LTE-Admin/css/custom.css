@@ -1,0 +1,59 @@
+body {
+  font-family: 'Cuprum', sans-serif !important;
+}
+.main-content{
+    background-color:white;
+    padding:20px;
+    width:97%;
+    margin-right:auto;margin-left:auto;
+}
+.btn-default{
+    color:brown;
+}
+.k_loader{
+    font-size:15px;
+}
+.content {
+  background-color: white;
+  padding: 15px !important;
+  width: 97%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.form-title {
+  margin-bottom: 30px;
+  color: #150404;
+  position:relative;
+  margin-left:20px;
+}
+.form-title::before {
+  content: " ";
+  position: absolute;
+  bottom: 4px;
+  width: 5px;
+  background-color: chocolate;
+  height: 40px;
+  left: -15px;
+}
+
+h3.form-title{
+    margin-top:15px;margin-bottom:10px;
+   font-size:1.1rem !important;
+}
+h3.form-title::before {
+  content: " ";
+  position: absolute;
+  bottom: 0px;
+  width: 5px;
+  background-color: chocolate;
+  height: 25px;
+  left: -15px;
+}
+
+.sm-link {
+  color: brown;
+  font-weight: 700;
+}
+.sm-link:hover{
+    color:chocolate;
+}

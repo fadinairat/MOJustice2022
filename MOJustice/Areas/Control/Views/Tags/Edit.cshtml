@@ -1,0 +1,102 @@
+﻿@model MOE.Models.Tag
+@using MOE.Models
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Control/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">Tags</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li class="breadcrumb-item active">Tags</li>
+            </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+      
+<section class="content">
+<div class="container-fluid">
+<h1 class="form-title">Edit Tag</h1>
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Edit" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArName" class="control-label"></label>
+                <input asp-for="ArName" class="form-control" />
+                <span asp-validation-for="ArName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TempId" class="control-label"></label>
+                 <select asp-for="TempId" class="form-control" name="TempId">
+                     <option value="" >:: SELECT TEMPLATE ::</option>
+                        @{
+                            List<HtmlTemplate> templates = ViewBag.Templates;
+                            foreach (HtmlTemplate temp in templates)
+                            {                                                   
+                                Boolean isSelected = false;
+                                if (temp.Id == Model.TempId) isSelected = true;
+
+                                if(isSelected){
+                                    <option value="@temp.Id" selected="selected" >@temp.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@temp.Id" >@temp.Name</option>
+                                }
+                            }
+                        }
+                </select>                
+                <span asp-validation-for="TempId" class="text-danger"></span>
+            </div>
+            
+            
+            <div class="form-group">
+                <label asp-for="Thumb" class="control-label"></label>
+                <input type="file" asp-for="Thumb" class="form-control" />
+                <img style="width:15%" src="@Url.Content(Model.Thumb)"/>
+                <span asp-validation-for="Thumb" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="ItemsPerPage" class="control-label"></label>
+                <input asp-for="ItemsPerPage" class="form-control" />
+                <span asp-validation-for="ItemsPerPage" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger ml-2">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+
+@section Scripts{
+    {
+        <partial name="_ValidationScriptsPartial" >
+    }
+}
+

@@ -1,0 +1,41 @@
+﻿@model MOE.Models.Page
+@using MOE.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="container pt-3" >
+	@{
+		ViewData["Title"] = Model.Title;
+	}
+	<div class="row mb-3">
+		<div class="col-12 text-right" >@Html.Raw(ViewBag.Route)</div>
+	</div>
+	<div class="row">
+		@if(Model.ShowDate == true)
+		{
+			<div class="col-12 col-md-8"><h3 class="navh6">@Model.Title</h3></div>
+			<div class="col-12 col-md-4 text-left"><span class="sdate">تاريخ النشر: @Model.PageDate.ToString("yyyy-MM-dd")</span></div>
+		}	
+	</div>
+	@if (Model.ShowThumb)
+	{
+		<div class="row"><div class="col-12 text-center" >
+				@if(Model.Thumb2 !=null && Model.Thumb2 != "")
+				{
+					<img src="@Url.Content(Model.Thumb2)" class="article_img" >
+				}
+				else if(Model.Thumb != null && Model.Thumb !="")
+				{
+					<img src="@Url.Content(Model.Thumb)" class="article_img" >
+				}
+			</div></div>
+	}
+	<div class="row page_content mt-3">
+		@Html.Raw(Model.Body)
+	</div>
+</div>
+@section Scripts{
+	
+}
+
+

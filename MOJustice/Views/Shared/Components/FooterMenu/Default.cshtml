@@ -1,0 +1,60 @@
+﻿@using MOE.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@if(ViewBag.ParentMenus != null)
+{
+	foreach(Menu item in ViewBag.ParentMenus)
+	{
+		string dropdown = "";
+		string menuLink = "<h5>"+item.Name+"</h5>";
+			if(ViewBag.SubMenus != null)
+			{
+				foreach(Menu sub in ViewBag.SubMenus)
+				{
+					if(sub.ParentId == item.Id)
+					{
+						//if (dropdown == "") dropdown = "<ul class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\" >";
+						//dropdown += "<li><a class=\"dropdown-item\" target=\""+sub.Target+"\" href=\""+sub.Link+"\">"+sub.Name+"</a></li>";
+						dropdown += "<li><a href=\""+sub.Link+"\" target=\""+sub.Target+"\" class=\"\" >"+sub.Name+"</a></li>";
+
+					}
+				}
+			}
+		<div class="col-md-4 col-6">
+			<div class="footer_menu">
+			<h5>@Html.Raw(item.Name)</h5>
+			</div>
+			<ul class="footer_menu_ul">
+				@Html.Raw(dropdown)
+			</ul>
+		</div>
+	}
+}
+@*<div class="col-md-4 col-6">
+	<div class="footer_menu">
+	<h5>الأقسام</h5>
+	</div>
+	<ul class="footer_menu_ul">
+	<li><a href="" class="" >عن اللجنة</a></li>
+	<li><a href="" class="" >الأخبار</a></li>
+	<li><a href="" class="" >التشريعات</a></li>
+	<li><a href="" class="" >الإتفاقيات الدولية</a></li>
+	<li><a href="" class="" >تقارير اللجان الدولية</a></li>
+	<li><a href="" class="" >مراجع</a></li>
+	</ul>
+</div>
+<div class="col-md-4 col-6">
+	<div class="footer_menu">
+	<h5>روابط هامة</h5>
+	</div>
+	<ul class="footer_menu_ul">
+	<li><a href="" class="" >ديوان الفتوى والتشريع</a></li>
+	<li><a href="" class="" >المجلس التشريعي الفلسطيني</a></li>
+	<li><a href="" class="" >مجمع المحاكم الفلسطينية</a></li>
+	<li><a href="" class="" >مجلس الوزراء</a></li>
+	<li><a href="" class="" >الهيئة المستقلة لحقوق المواطن</a></li>
+	</ul>
+</div>*@

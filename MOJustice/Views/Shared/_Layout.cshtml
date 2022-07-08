@@ -1,0 +1,176 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اللجنة الدائمة لموائمة التشريعات</title>
+    <link rel="stylesheet" href="~/frontend/bootstrap/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="~/frontend/css/styles.css">
+    <link href="~/frontend/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="~/frontend/fontawesome/css/solid.min.css" rel="stylesheet">
+    <link href="~/frontend/fontawesome/css/brands.min.css" rel="stylesheet">
+    <link href="~/frontend/fontawesome/css/regular.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+	
+    <link rel="stylesheet" href="~/frontend/owlcarousel/dist/assets/owl.carousel.min.css" />
+	<link rel="stylesheet" href="~/frontend/owlcarousel/dist/assets/owl.theme.default.min.css">
+	<link rel="stylesheet" href="~/frontend/css/animate.css">
+	<link rel="stylesheet" href="~/frontend/css/jquery.flipster.min.css">
+	<link rel="stylesheet" href="~/frontend/ticker/css/style.min.css">
+	<link rel="stylesheet" href="~/frontend/fonts/neosans/style.css">
+	<link rel="stylesheet" href="~/frontend/css/custom.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@fancyapps/ui@4.0/dist/fancybox.css">
+
+</head>
+<body dir="rtl" lang="ar">
+    <header class="">
+           
+		<div class="top">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<a id="logo" class="navbar-brand" asp-action="Index" asp-controller="Home">
+						   <img class="img-fluid logo" src="~/frontend/images/logo.png" />
+						   <span>اللجنة الدائمة لموائمة التشريعات</span>
+						</a>
+					</div>				
+					<div class="col-md-4 align-self-end">
+						<div class="topnav">
+							<div class="top_icons">
+								<a href="#" alt="" class=""><i class="fa-solid fa-bars"></i></a>
+								<a href="#" alt="" class=""><i class="fa-solid fa-magnifying-glass"></i></a>
+								<a href="#" alt="" class="en">EN</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="top_menu" >
+			<div class="" >
+				@await Component.InvokeAsync("TopMenu")
+			</div>
+		</div>
+    </header>
+	
+	@RenderBody()
+
+	<footer >
+		<div class="container">
+			<div>
+				<a id="logo" class="navbar-brand" href="#">
+				   <img class="img-fluid logo" src="~/frontend/images/logoicon.png" />
+				   <span>اللجنة الدائمة لموائمة التشريعات</span>
+				</a>
+			</div>
+			<div class="footer_det">
+			   <div class="row">
+				  <div class="col-md-4 col-12">
+					<ul>
+						<li>
+							<i class="fa-solid fa-location-dot"></i> <span>محافظة رام الله - الماصيون</span>
+						</li>
+						<li>
+							<i class="fa-solid fa-phone"></i> <span>+97022987662</span>
+						</li>
+						<li>
+							<i class="fa-solid fa-fax"></i> <span>+9702297449</span>
+						</li>
+						<li>
+							<i class="fa-solid fa-at"></i> <span>Harmonization@moj.pna.ps</span>
+						</li>
+					</ul>
+				  </div>
+				  @await Component.InvokeAsync("FooterMenu")
+				  
+				  
+			   </div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="d-flex justify-content-between">
+					 <div class="footer_copyright open-accessibility-text " data-open-accessibility-text-original="12.8px" style="font-size: 12.8px;">
+						جميع الحقوق محفوظة. وزارة العدل فلسطين &copy; @DateTime.Now.Year
+					 </div>
+					 <div class="footer_copyright align-self-start" data-open-accessibility-text-original="12.8px" style="font-size: 12.8px;">
+						<a href="https://www.intertech.ps/" target="_blank" >تصميم و تطوير انترتك</a>
+					 </div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+    <script src="~/frontend/js/jquery-3.5.1.min.js" ></script>
+    <script src="~/frontend/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/frontend/owlcarousel/dist/owl.carousel.min.js"></script>
+	<script src="~/frontend/js/wow.min.js"></script>	
+	<script src="~/frontend/js/jquery.flipster.min.js"></script>
+	<script src="~/frontend/ticker/js/acmeticker.js"></script>
+	<script src="~/frontend/js/embed.videos.min.js"></script>
+	<script src="~/frontend/js/countfect.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+	
+	
+	@await RenderSectionAsync("Scripts", required: false)
+	<script type="text/javascript">
+$(document).ready(function() {
+
+    if ($(window).width() > 991) {
+        setTimeout(function() {
+            var navbarW = $("#navbarMain").width() - $("#navbarMain>ul > li:first-child").width();
+            var navbarulW = 0;
+            $("#navbarMain>ul > li:not(:first-child)").each(function() {
+                navbarulW = parseInt(navbarulW) + parseInt($(this).width());
+            })
+            if (navbarW > navbarulW) {
+                var remW = navbarW - navbarulW;
+                var navslic = $("#navbarMain>ul>li:not(:first-child)").length;
+                var devW = remW / navslic;
+                //console.log(devW);
+                $("#navbarMain>ul>li:not(:first-child)").each(function() {
+                    $(this).width($(this).width() + devW)
+                })
+            }
+            $(".jerusalem").height(parseInt($("#news").height()) + (parseInt($("#news").css("padding")) * 2));
+        }, 500)
+
+    }
+    if ($(window).width() < 991) {
+        /*
+            $("header").addClass("scrolled");
+            $(".logo1").show();
+            $(".logo2").hide();
+            $(".hi2").show();
+            $(".hi1").hide();
+        */
+    }
+    $(document).on("click", ".activitiesmenu a", function() {
+        $(".activitiesmenu a").removeClass("active");
+        $(".panels").removeClass("active");
+        $(this).addClass("active");
+        var activePanel = $(this).attr("href").replace("#", "");
+        $("." + activePanel).addClass("active");
+    })
+});
+	</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

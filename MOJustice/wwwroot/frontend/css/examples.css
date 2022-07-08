@@ -1,0 +1,160 @@
+﻿body {
+    height: 100%;
+}
+
+.screen-block {
+    box-shadow: inset 0 0 58px 18px #000000;
+}
+
+#toast-container>div {
+    width: 460px;
+}
+
+.main-container {
+    top: 70px;
+    position: relative;
+    overflow: hidden;
+}
+
+#home{
+    top: 0px;
+    bottom: 0px;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+}
+
+.prev-next{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 15%;
+    text-align: center;
+}
+
+.prev-next span{
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+}
+
+.glyphicon-chevron-left {
+    background-image: url(../Images/promo_carousel_left.png);
+    width: 40px;
+    height: 40px;
+}
+
+.left:hover .glyphicon-chevron-left {
+    background-position: 0px -40px;
+}
+
+.glyphicon-chevron-left:before {
+    content: '';
+}
+
+.glyphicon-chevron-right{
+    background-image: url(../Images/promo_carousel_right.png);
+    width: 40px;
+    height: 40px;
+}
+
+.right:hover .glyphicon-chevron-right {
+    background-position: 0px -40px;
+}
+
+.glyphicon-chevron-right:before {
+    content: '';
+}
+
+.right {
+    background: none;
+    right: 0;
+    left: inherit;
+}
+
+.left {
+    background: none;
+}
+
+.resolution-wrapper {
+    height: 100%;
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+.mobile .resolution-wrapper {
+    background-image: url(../Images/phone.png);
+    background-size: 71mm 146mm;
+    width: 71mm;
+    height: 146mm;
+    margin-right: auto;
+    margin-left: auto;
+
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+
+.mobile-land .resolution-wrapper {
+    background-image: url(../Images/phone-land.png);
+    background-size: 146mm 71mm;
+    width: 146mm;
+    height: 71mm;
+    margin-right: auto;
+    margin-left: auto;
+
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+
+.carousel-container {
+    overflow: hidden;
+    top: 0px;
+    bottom: 0px;
+    position: inherit;
+    right: 0px;
+    left: 0px;
+    height: 100%;
+}
+
+.mobile .carousel-container {
+    width: 61mm;
+    height: 99mm;
+    
+    margin-left: 5mm;
+    margin-top: 27mm;
+}
+
+.mobile-land .carousel-container {
+    width: 99mm;
+    margin-left: 20mm;
+    margin-top: 5mm;
+    height: 61mm;
+}
+
+#options-container {
+    background: rgba(221, 239, 241, 0.85);
+    height: 50px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: none;
+    -moz-box-shadow: 0px -1px 3px rgba(0,0,0,0.3);
+    box-shadow: 0px -1px 3px rgba(0,0,0,0.3);
+}
+
+.config-label{
+    font-size: 17px;
+    color: #336799;
+    float: left;
+    font-family: Lato, Arial;
+}
+
+#options-container-inner {
+    font-size: 13px;
+}

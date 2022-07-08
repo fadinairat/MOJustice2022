@@ -1,0 +1,275 @@
+﻿@model MOE.Models.Page
+@using MOE.Models
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Control/Views/Shared/_Layout.cshtml";
+}
+<partial name="_validationMsg" />
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">Pages</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li class="breadcrumb-item active">Pages</li>
+            </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+      
+<section class="content">
+<div class="container-fluid">
+<h1 class="form-title">Add New Page</h1>
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="SubTitle" class="control-label"></label>
+                <input asp-for="SubTitle" class="form-control" />
+                <span asp-validation-for="SubTitle" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Slug" class="control-label"></label>
+                <input asp-for="Slug" class="form-control" />
+                <span asp-validation-for="Slug" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="PageDate" class="control-label"></label>
+                    <input asp-for="PageDate" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" class="form-control" />
+                    <span asp-validation-for="PageDate" class="text-danger"></span>
+                </div>
+
+                 <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="ValidDate" class="control-label"></label>
+                    <input asp-for="ValidDate" class="form-control" />
+                    <span asp-validation-for="ValidDate" class="text-danger"></span>
+                </div>
+            
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="LangId" class="control-label"></label>
+                    <select asp-for="LangId" class ="form-control" asp-items="ViewBag.LangId"></select>
+                </div>
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="TemplateId" class="control-label"></label>
+                    <select asp-for="TemplateId" class ="form-control">
+                         <option value="" >:: Default ::</option>
+                         @{
+                            List<HtmlTemplate> templates = ViewBag.TemplateId;
+                            foreach (HtmlTemplate temp in templates)
+                            {                                                   
+                                    <option value="@temp.Id">@temp.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="Priority" class="control-label"></label>
+                    <input asp-for="Priority" class="form-control" value="999999"/>
+                    <span asp-validation-for="Priority" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6 col-sm-4 col-md-3">
+                    <label asp-for="Parent" class="control-label"></label>
+                    <select asp-for="Parent" class ="form-control">
+                         <option value="" >:: ROOT ::</option>
+                         @{
+                            List<Page> parents = ViewBag.Parent;
+                            foreach (Page temp in parents)
+                            {                                                   
+                                    <option value="@temp.PageId">@temp.Title</option>
+                            }
+                        }
+                    </select>
+                </div>
+               
+            </div>
+
+            <div class="form-group col-6 col-sm-4">
+                <label class="control-label">Category</label>
+                <select name="Category" id="Category" data-val="true" required class="form-control input-validation-error" data-val-required="Page Category field is required..." >
+                        <option value="" >:: SELECTED CATEGORY ::</option>
+                        @{
+                        List<Category> cats = ViewBag.Cats;
+                        foreach (Category temp in cats)
+                        {                                                   
+                                <option value="@temp.Id">@temp.Name</option>
+                        }
+                    }
+                </select>
+                <span class="text-danger field-validation-error" data-valmsg-for="Category" data-valmsg-replace="true"></span>
+            </div>
+           
+
+            <div class="form-group">
+                <label asp-for="Body" class="control-label"></label>
+                <textarea asp-for="Body" class="form-control" ></textarea>
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Summary" class="control-label"></label>
+                <textarea asp-for="Summary" class="form-control" rows=3></textarea>
+                <span asp-validation-for="Summary" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MetaDescription" class="control-label"></label>
+                <textarea asp-for="MetaDescription" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="MetaDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MetaKeywords" class="control-label"></label>
+                <textarea asp-for="MetaKeywords" class="form-control" rows="3" ></textarea>
+                <span asp-validation-for="MetaKeywords" class="text-danger"></span>
+            </div>
+           
+            <div class="row">
+                 <div class="form-group col-12 col-sm-6">
+                    <label asp-for="Url" class="control-label"></label><br />
+                    <input type="url" asp-for="Url" class="form-control" style="width:95%;display:inline;" /> <a href="#" id="get_link" data-toggle="modal" data-target="#linkmodal" ><i class="fa fa-link" id="get_link_icon" data-text="Url" style="font-size:24px;" aria-hidden="true"></i></a>
+                    <span asp-validation-for="Url" class="text-danger"></span>
+                </div>
+                @*<div class="form-group col-12 col-sm-6">
+                    <label asp-for="RedirectUrl" class="control-label"></label>
+                    <input type="url" asp-for="RedirectUrl" class="form-control" />
+                    <span asp-validation-for="RedirectUrl" class="text-danger"></span>
+                </div>*@
+            </div>
+           
+            <div class="row">
+                 <div class="form-group col-12 col-md-6">
+                    <label asp-for="Thumb" class="control-label"></label>
+                    <input type="file" asp-for="Thumb" class="form-control" />
+                    <span asp-validation-for="Thumb" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label asp-for="Thumb2" class="control-label"></label>
+                    <input type="file" asp-for="Thumb2" class="form-control" />
+                    <span asp-validation-for="Thumb2" class="text-danger"></span>
+                </div>
+            </div>
+           
+
+            <div class="row">
+                <div class="form-group form-check col-6 col-sm-4">
+                    <label asp-for="ShowThumb" class="control-label" style="width:60%;"></label>
+                    <input asp-for="ShowThumb" type="checkbox" checked  data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                </div>
+                <div class="form-group form-check col-6 col-sm-4">
+                    <label asp-for="Publish" class="control-label" style="width:60%;"></label>
+                    <input asp-for="Publish"  type="checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                </div>
+               
+                <div class="form-group form-check col-6 col-sm-4">
+                    <label asp-for="ShowAsMain" class="control-label" style="width:60%;"></label>
+                        <input asp-for="ShowAsMain"  type="checkbox"  data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    
+                </div>
+            
+                <div class="form-group form-check col-6 col-sm-4">
+                    <label asp-for="ShowInSearchPage" class="control-label" style="width:60%;"></label>
+                        <input asp-for="ShowInSearchPage"  type="checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                   
+                </div>
+                <div class="form-group form-check col-6 col-sm-4">
+                   <label asp-for="ShowInSiteMap" class="control-label" style="width:60%;"></label>
+                   <input asp-for="ShowInSiteMap" type="checkbox"  data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                   
+                </div>
+                <div class="form-group form-check col-6 col-sm-4">
+                    <label asp-for="ShowDate" class="control-label" style="width:60%;"></label>
+                    <input asp-for="ShowDate"  type="checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                   
+                </div>
+                <div class="form-group form-check col-6 col-sm-4">
+                    <label asp-for="AllowComment" class="control-label" style="width:60%;"></label>
+                    <input asp-for="AllowComment" type="checkbox"  data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                   
+                </div>
+                <div class="form-group form-check col-6 col-sm-4">
+                    <label asp-for="ShowAsRelated" class="control-label" style="width:60%;"></label>
+                    <input asp-for="ShowAsRelated"  type="checkbox"  data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    
+                </div>
+                <div class="form-group form-check col-6 col-sm-4">
+                    <label asp-for="ShowRelated" class="control-label" style="width:60%;"></label>
+                    <input asp-for="ShowRelated"  type="checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    
+                </div>
+                <div class="form-group form-check col-6 col-sm-4">
+                    <label asp-for="Sticky" class="control-label" style="width:60%;"></label>
+                    <input asp-for="Sticky"  type="checkbox"  data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                </div>
+            </div>
+            
+           
+            @*
+                <div class="form-group">
+                <label asp-for="Gallery" class="control-label"></label>
+                <input asp-for="Gallery" class="form-control" />
+                <span asp-validation-for="Gallery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Video" class="control-label"></label>
+                <input asp-for="Video" class="form-control" />
+                <span asp-validation-for="Video" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Audio" class="control-label"></label>
+                <input asp-for="Audio" class="form-control" />
+                <span asp-validation-for="Audio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+            </div>*@
+           
+            <div class="form-group text-center">
+                <input type="submit" value="Create Page" class="btn btn-primary" />&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-danger" asp-action="Index" >Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div></section>
+@section Scripts{
+    {
+        <partial name="_ValidationScriptsPartial" >
+    }
+    <script type="text/javascript" >
+    $(function(){   
+        $("input[data-bootstrap-switch]").each(function(){
+          $(this).bootstrapSwitch('state', $(this).prop('checked'));
+        });
+    });
+    </script>
+
+    <script>$(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('Body', {
+            language: 'en',
+            uiColor: '#f8f9fa',
+            contentsLangDirection: 'ltr',
+            height: 300,
+            baseFloatZIndex: 10005
+        });
+        //bootstrap WYSIHTML5 - text editor
+        //$(".textarea").wysihtml5();
+    });
+    </script>
+}
+

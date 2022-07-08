@@ -1,0 +1,187 @@
+﻿@model MOE.Models.Files
+@using MOE.Models
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Control/Views/Shared/_Layout.cshtml";
+}
+<partial name="_validationMsg" />
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">Files</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li class="breadcrumb-item active">Files</li>
+            </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+      
+<section class="content">
+<div class="container-fluid">
+
+<h1 class="form-title">Add New File</h1>
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" enctype="multipart/form-data" >
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col-12 col-md-6">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label asp-for="ArName" class="control-label"></label>
+                    <input asp-for="ArName" class="form-control" style="text-align:right;direction:rtl;" />
+                    <span asp-validation-for="ArName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-6 col-md-3">
+                    <label asp-for="Type" class="control-label"></label>
+                    <select asp-for="Type" class ="form-control" asp-items="ViewBag.Type"></select>
+                </div>
+                <div class="form-group col-6 col-md-3">
+                    <label asp-for="CatId" class="control-label"></label>
+                    <select asp-for="CatId" class ="form-control" >
+                        @{
+                            List<Category> cats = ViewBag.Cats;
+                            foreach (Category temp in cats)
+                            {                                                   
+                                <option value="@temp.Id">@temp.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+               @* <div class="form-group col-6 col-md-3">
+                    <label asp-for="Parent" class="control-label"></label>
+                    <input asp-for="Parent" class="form-control" />
+                    <span asp-validation-for="Parent" class="text-danger"></span>
+                </div>*@
+                <div class="form-group col-6 col-md-3">
+                    <label asp-for="Date" class="control-label"></label>
+                    <input asp-for="Date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6 col-md-3">
+                    <label asp-for="Year" class="control-label"></label>
+                    <input asp-for="Year" class="form-control" />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+                 <div class="form-group col-6 col-md-3">
+                    <label asp-for="LangId" class="control-label"></label>
+                    <select asp-for="LangId" class ="form-control" asp-items="ViewBag.LangId"></select>
+                </div>
+
+                <div class="form-group col-6 col-md-3">
+                    <label asp-for="Priority" class="control-label"></label>
+                    <input asp-for="Priority" class="form-control" value="999999"/>
+                    <span asp-validation-for="Priority" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FilePath" class="control-label"></label>
+                <input asp-for="FilePath" type="file" class="form-control" />
+                <span asp-validation-for="FilePath" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+                <label asp-for="Source" class="control-label"></label>
+                <textarea asp-for="Source" class="form-control" rows="6" ></textarea>
+                <span asp-validation-for="Source" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Thumb" class="control-label"></label>
+                <input asp-for="Thumb" type="file" class="form-control" />
+                <span asp-validation-for="Thumb" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" ></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArDescription" class="control-label"></label>
+                <textarea asp-for="ArDescription" class="form-control" ></textarea>
+                <span asp-validation-for="ArDescription" class="text-danger"></span>
+            </div>
+
+             <div class="row">
+                 <div class="form-group col-4 col-sm-3">
+                    <label asp-for="Publish" class="control-label"></label>
+                    <input asp-for="Publish" type="checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="Publish" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4 col-sm-3">
+                    <label asp-for="Active" class="control-label"></label>
+                    <input asp-for="Active" type="checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="Active" class="text-danger"></span>
+                </div>
+                 <div class="form-group col-4 col-sm-3">
+                    <label asp-for="ShowHome" class="control-label"></label>
+                    <input asp-for="ShowHome" type="checkbox" data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="ShowHome" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4 col-sm-3">
+                    <label asp-for="AllowComment" class="control-label"></label>
+                    <input asp-for="AllowComment" type="checkbox" data-bootstrap-switch data-off-color="danger" data-on-color="success" />
+                    <span asp-validation-for="AllowComment" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save File" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger float-end">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+</div>
+</section>
+@section Scripts{
+    {
+        <partial name="_ValidationScriptsPartial" >
+    }
+    <script type="text/javascript" >
+    $(function(){   
+        $("input[data-bootstrap-switch]").each(function(){
+          $(this).bootstrapSwitch('state', $(this).prop('checked'));
+        });
+    });
+    </script>
+
+    <script>$(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('Description', {
+            language: 'en',
+            uiColor: '#f8f9fa',
+            contentsLangDirection: 'ltr',
+            height: 300,
+            baseFloatZIndex: 10005
+        });
+        CKEDITOR.replace('ArDescription', {
+            language: 'ar',
+            uiColor: '#f8f9fa',
+            contentsLangDirection: 'rtl',
+            height: 300,
+            baseFloatZIndex: 10005
+        });
+        //bootstrap WYSIHTML5 - text editor
+        //$(".textarea").wysihtml5();
+    });
+    </script>
+}

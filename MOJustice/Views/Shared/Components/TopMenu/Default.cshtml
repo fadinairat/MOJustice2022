@@ -1,0 +1,111 @@
+﻿@using MOE.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<nav class="navbar navbar-expand-lg bg-light">
+	<div class="container">
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarMain">
+		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			<li class="nav-item ">
+				<a class="nav-link " asp-action="Index" asp-controller="Home" asp-area="">
+					<i class="fa-solid fa-house-chimney"></i>
+				</a>
+			</li>
+			@if(ViewBag.ParentMenus != null)
+			{
+				foreach(Menu item in ViewBag.ParentMenus)
+				{
+					string dropdown = "";
+					string menuLink = "<a class=\"nav-link\" target=\""+item.Target+"\" href=\""+Url.Content("~/"+item.Link)+"\" id=\"navbarDropdown\">"+item.Name+"</a>";
+						if(ViewBag.SubMenus != null)
+						{
+							foreach(Menu sub in ViewBag.SubMenus)
+							{
+								if(sub.ParentId == item.Id)
+								{
+									if (dropdown == "") dropdown = "<ul class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\" >";
+									dropdown += "<li><a class=\"dropdown-item\" target=\""+sub.Target+"\" href=\""+Url.Content("~/"+sub.Link)+"\">"+sub.Name+"</a></li>";
+
+								}
+							}
+							if (dropdown != "")
+							{
+								dropdown += "</ul>";
+								menuLink = "<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">"+item.Name+"</a>";
+							}
+						}
+					<li class="nav-item dropdown">
+						@Html.Raw(menuLink)
+						@Html.Raw(dropdown)
+					</li>
+				}
+			}
+			@*<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				عن اللجنة
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<li><a class="dropdown-item" href="#">عن اللجنة</a></li>
+				<li><a class="dropdown-item" href="#">عن اللجنة</a></li>
+				</ul>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				الأخبار
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<li><a class="dropdown-item" href="#">الأخبار</a></li>
+				<li><a class="dropdown-item" href="#">الأخبار</a></li>
+				</ul>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				التشريعات
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<li><a class="dropdown-item" href="#">التشريعات</a></li>
+				<li><a class="dropdown-item" href="#">التشريعات</a></li>
+				</ul>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				الإتفاقيات الدولية
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<li><a class="dropdown-item" href="#">الإتفاقيات الدولية</a></li>
+				<li><a class="dropdown-item" href="#">الإتفاقيات الدولية</a></li>
+				</ul>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				تقارير اللجان الدولية
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<li><a class="dropdown-item" href="#">تقارير اللجان الدولية</a></li>
+				<li><a class="dropdown-item" href="#">تقارير اللجان الدولية</a></li>
+				</ul>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				مراجع
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<li><a class="dropdown-item" href="#">مراجع</a></li>
+				<li><a class="dropdown-item" href="#">مراجع</a></li>
+				</ul>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link " href="#" id="navbarDropdown">
+				اتصل بنا
+				</a>
+			</li>*@
+		</ul>
+	</div>
+	</div>
+</nav>

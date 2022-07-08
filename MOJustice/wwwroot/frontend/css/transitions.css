@@ -1,0 +1,41 @@
+﻿.transition-margin-top {
+    -webkit-transition: margin-top 0.25s ease-in-out;
+    -moz-transition: margin-top 0.25s ease-in-out;
+    -ms-transition: margin-top 0.25s ease-in-out;
+    -o-transition: margin-top 0.25s ease-in-out;
+}
+
+.transition-background {
+    -webkit-transition: background 0.25s ease-in-out;
+    -moz-transition: background 0.25s ease-in-out;
+    -ms-transition: background 0.25s ease-in-out;
+    -o-transition: background 0.25s ease-in-out;
+}
+
+.transition-height {
+    -webkit-transition: height 0.25s ease-in-out;
+    -moz-transition: height 0.25s ease-in-out;
+    -ms-transition: height 0.25s ease-in-out;
+    -o-transition: height 0.25s ease-in-out;
+}
+
+.transition-height-background {
+    -webkit-transition: background 0.25s ease-in-out, height 0.25s ease-in-out;
+    -moz-transition: background 0.25s ease-in-out, height 0.25s ease-in-out;
+    -ms-transition: background 0.25s ease-in-out, height 0.25s ease-in-out;
+    -o-transition: background 0.25s ease-in-out, height 0.25s ease-in-out;
+}
+
+.transition-color {
+    -webkit-transition: color 0.25s ease-in-out;
+    -moz-transition: color 0.25s ease-in-out;
+    -ms-transition: color 0.25s ease-in-out;
+    -o-transition: color 0.25s ease-in-out;
+}
+
+.transition-all {
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -ms-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+}

@@ -1,0 +1,168 @@
+﻿@model MOE.Models.Files
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Control/Views/Shared/_Layout.cshtml";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">Files</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li class="breadcrumb-item active">Files</li>
+            </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<section class="content">
+<div class="container-fluid">
+
+<h1 class="form-title">File Details</h1>
+    <dl class="row">
+         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArName)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.ArName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FileType)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.FileType.Title)
+        </dd>
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Priority)
+        </dd>
+       
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Language)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Language.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Source)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Source)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Thumb)
+        </dt>
+        <dd class = "col-sm-4">
+             @if(Model.Thumb.ToString() != "")
+            {
+                <img src="@Url.Content(Model.Thumb)" target="_blank" class="btn btn-primary" style="width:150px;">
+            }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FilePath)
+        </dt>
+        <dd class = "col-sm-4">
+            @if(Model.FilePath.ToString() != "")
+            {
+                <a href="@Url.Content(Model.FilePath)" target="_blank" class="btn btn-primary" ><i class="bi bi-cloud-arrow-down-fill"></i> Download</a>
+            }
+        </dd>
+        
+         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Publish)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Publish)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ShowHome)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.ShowHome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AllowComment)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.AllowComment)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.User.Nickname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddDate)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.AddDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+       
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</div>
+</section>

@@ -1,0 +1,126 @@
+﻿@model MOE.Models.Group
+
+@{
+    ViewData["Title"] = "Group Details";
+    Layout = "~/Areas/Control/Views/Shared/_Layout.cshtml";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">Groups</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li class="breadcrumb-item active">Groups</li>
+            </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<section class="content">
+<div class="container-fluid">
+
+<h1 class="form-title">Group Details</h1>
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Language)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Language.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P3)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P3)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P4)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P4)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P5)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P5)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P6)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P6)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P7)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P7)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P8)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P8)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P9)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P9)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P10)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P10)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P11)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P11)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P12)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P12)
+        </dd>
+        
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index" >Back to List</a>
+</div>
+</section>
